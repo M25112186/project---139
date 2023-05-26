@@ -56,15 +56,17 @@ def bot_response(user_input):
    predicted_class_label =  bot_class_prediction(user_input)
  
    # extract the class from the predicted_class_label
-   predicted_class = ""
+    predicted_class = classes[predicted_class_label]
+    for intent in intents['intents']:
+        if intent['tag']==predicted_class:
+            bot_response = random.choice(intent['responses'])
+            return bot_response
 
    # now we have the predicted tag, select a random response
 
    for intent in intents['intents']:
     if intent['tag']==predicted_class:
-       
-       # choose a random bot response
-        bot_response = ""
+        bot_response = random.choice(intent['responses'])
     
         return bot_response
     
